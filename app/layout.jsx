@@ -1,19 +1,19 @@
-import React from 'react'
-import '@styles/global.css'
-import NavBar from '@components/NavBar'
+import React from "react";
+import "@styles/global.css";
+import NavBar from "@components/NavBar";
+import Footer from "@components/Footer";
 
-const RootLayout = ({children}) => {
+const RootLayout = ({ children }) => {
   return (
-<html>
-    <head>
-
-    </head>
-    <body class="bg-gray-300">
-      <NavBar/>
+    <html>
+      <head></head>
+      <body class="main">
+        <NavBar />
         {children}
-    </body>
-</html>
-  )
-}
+        <Footer />
+      </body>
+    </html>
+  );
+};
 
-export default RootLayout
+export default RootLayout;
