@@ -1,6 +1,9 @@
 "use client";
+
+import ContactUsCard from "@components/ContactUsCard";
+
 const Home = () => {
-  return (
+  return (<>
     <div className="main pt-40">
       <div className="flex flex-col justify-center">
         <h1 className="justify-center flex p-8 text-xl font-bold  text-white ">
@@ -43,6 +46,8 @@ const Home = () => {
         </div>
       </div>
     </div>
+    <ContactUsCard/>
+    </>
   );
 };
 

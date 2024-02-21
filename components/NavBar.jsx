@@ -6,7 +6,7 @@ const NavBar = () => {
   const [loggedon, setLoggedon] = useState(false);
 
   return (
-    <header className="p-4">
+    <header className="p-4 bg-black">
       <nav className="flex justify-between items-center w-[92%] mx-auto ">
         <div>
           <Link href="/">
