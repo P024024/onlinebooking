@@ -1,5 +1,5 @@
 import React from "react";
-
+import Link from'next/link'
 const Footer = () => {
   return (
     <>
@@ -10,67 +10,38 @@ const Footer = () => {
       <div class="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
         <div>
             <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Company</h2>
-            <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                <li class="mb-4">
-                    <a href="#" class=" hover:underline">About</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Careers</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Brand Center</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Blog</a>
-                </li>
+            <ul class="text-gray-500 dark:text-gray-400 font-medium gap-[1vw] flex flex-col">
+                <Link href="" class="hover:underline ">About</Link>
+                <Link href="" class="hover:underline ">Careers</Link>
+                <Link href="" class="hover:underline ">Docs</Link>
+                <Link href="" class="hover:underline ">Blog</Link>
+                
             </ul>
         </div>
         <div>
             <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Help center</h2>
-            <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Discord Server</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Twitter</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Facebook</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Contact Us</a>
-                </li>
+            <ul class="text-gray-500 dark:text-gray-400 font-medium flex flex-col gap-[1vw]">
+                <Link href="" class="hover:underline ">Discord Server</Link>
+                <Link href="" class="hover:underline ">Twitter</Link>
+                <Link href="" class="hover:underline ">Facebook</Link>
+                <Link href="" class="hover:underline ">Contact Us</Link>
             </ul>
         </div>
         <div>
             <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
-            <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Privacy Policy</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Licensing</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Terms &amp; Conditions</a>
-                </li>
+            <ul class="text-gray-500 dark:text-gray-400 font-medium flex flex-col gap-[1vw]">
+                <Link href="" class="hover:underline ">Privacy Policy</Link>
+                <Link href="" class="hover:underline ">Licensing</Link>
+                <Link href="" class="hover:underline ">Terms &amp; Conditions</Link>
             </ul>
         </div>
         <div>
             <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Download</h2>
-            <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">iOS</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Android</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Windows</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">MacOS</a>
-                </li>
+            <ul class="text-gray-500 dark:text-gray-400 font-medium flex flex-col gap-[1vw]">
+            <Link href="" class="hover:underline ">iOS</Link>
+                <Link href="" class="hover:underline ">Android</Link>
+                <Link href="" class="hover:underline ">Windows</Link>
+                <Link href="" class="hover:underline ">MacOS</Link>
             </ul>
         </div>
     </div>
