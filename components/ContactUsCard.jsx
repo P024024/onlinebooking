@@ -8,7 +8,7 @@ const ContactUsCard = () => {
       <div className="flex justify-center mt-4 text-black text-4xl font-medium ">
         Contact Us
       </div>
-          <div class="grid grid-cols-1 gap-8 px-4 py-6 lg:py-8 md:grid-cols-3">
+      <div class="grid grid-cols-1 gap-8 px-4 py-6 lg:py-8 md:grid-cols-3">
             <div>
               <ul class="text-gray-900 dark:text-gray-400 font-medium gap-[1vw] flex flex-col items-center">
                 <svg
