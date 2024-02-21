@@ -68,8 +68,8 @@ const ContactUs = () => {
                 <p>To: {gmail}</p>
                 <p>From: {complain.email}</p>
                 <p><br/>Dear Admin,</p>
-                <p>I would like to inform you about the problem that,</p>
-                <p>{complain.message}<br/></p>
+                <p className="w-2/3 items-left">I would like to inform you about the problem that,
+                {complain.message}<br/></p>
                 <p>Sincerly Yours,</p>
                 <p>{complain.name}</p>
               </div>
