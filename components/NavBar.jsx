@@ -23,7 +23,7 @@ const NavBar = () => {
             </Link>
             <Link href="/" className="hover:text-gray-500 text-white">Pubs
             </Link>
-            <Link href="/" className="hover:text-gray-500 text-white">Contact us
+            <Link href="/contactus" className="hover:text-gray-500 text-white">Contact us
             </Link>
           </ul>
         </div>
