@@ -9,13 +9,10 @@ const Home = () => {
         <h1 className="justify-center flex p-8 text-xl font-bold  text-white ">
           Welcome to Online Ticket Booking System
         </h1>
-        <h4 class="text-white  text-sm text-center lg:text-justify-center lg:break-words">
+        <p class="text-white text-sm  justify-center text-center lg:text-justify-center lg:break-words gap-[1vw]">
           Join us on an epic adventures we journey around the some of the most
-          breathtaking
-        </h4>
-        <h4 className="text-white  py-4 text-sm text-center lg:text-justify-center lg:break-words">
-          world visiting and the iconic destinations in the planets.
-        </h4>
+          breathtaking world <br/>visiting and the iconic destinations in the planets.
+        </p>
         <div className="flex justify-center m-4">
           <div className="w-96 bg-white rounded-full p-2 m-2">
             <div className="flex items-center ml-2">
