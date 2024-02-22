@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from "react";
 
 const MovieCard = () => {
@@ -17,7 +18,7 @@ const MovieCard = () => {
               Apple Watch Series 7 
             </h5>
           </a>
-          <p className="text-white text-left py-3">This is only for the demo purposes and there will be something special description about the movies to share</p>
+          <p className="text-white text-left py-3">This is only for the demo purposes and there will be something special description about the movies to share  <Link href="/movie/moviesdetails" className='text-orange-500 text-md font-medium'>See More</Link></p>
           <div class="flex items-center mt-2.5 mb-5">
             <div class="flex items-center space-x-1 rtl:space-x-reverse">
               <svg
