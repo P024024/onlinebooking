@@ -8,13 +8,9 @@ const MovieDetailsPage = () => {
     images: [{ url: "/assets/img/welcome.jpeg", alt: "Image 1" }],
     photos: [
       { url: "/assets/img/inception.jpg", alt: "Photo 1" },
-      { url: "/assets/img/welcome.jpeg", alt: "Photo 2" },
+      { url: "/assets/img/inception.jpg", alt: "Photo 2" },
       { url: "/assets/img/welcome.jpeg", alt: "Photo 3" },
       { url: "/assets/img/welcome.jpeg", alt: "Photo 4" },
-      { url: "/assets/img/welcome.jpeg", alt: "Photo 5" },
-      { url: "/assets/img/welcome.jpeg", alt: "Photo 5" },
-      { url: "/assets/img/welcome.jpeg", alt: "Photo 5" },
-      { url: "/assets/img/welcome.jpeg", alt: "Photo 5" },
     ],
   };
 
@@ -22,12 +18,17 @@ const MovieDetailsPage = () => {
     <>
       <div className="relative">
         <img src="/assets/img/inception.jpg" className="h-[420px] w-full" />
-        <img src="/assets/img/inception.jpeg" class="h-[300px] w-[250px] rounded-2xl absolute  top-60 left-20"/>
+        <img
+          src="/assets/img/inception.jpeg"
+          class="h-[300px] w-[250px] rounded-2xl absolute  top-60 left-20"
+        />
         <div class="flex flex-col md:flex-row mx-auto rounded-xl w-[90%]">
           <div class="flex flex-col absolute  top-60 left-[350px]">
             <div class="p-4 ">
               <p className="text-orange-500 text-xl font-bold">2014</p>
-              <h2 className="text-orange-500 text-3xl font-semibold">Inception</h2>
+              <h2 className="text-orange-500 text-3xl font-semibold">
+                Inception
+              </h2>
               <p className="text-orange-500">Action,Sci-fi 117mins</p>
               <div class="flex text-orange-500 gap-[1vw]">
                 <div class="flex flex-col">
@@ -91,13 +92,34 @@ const MovieDetailsPage = () => {
                 Add to
               </button>
               <button class="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"
+                  />
+                </svg>
                 Watch trailer
               </button>
             </div>
           </div>
           <div class="flex ">
             <div class="flex flex-col p-2">
-              <h3 class="text-lg text-orange-500 font-semibold mb-2">Movie Details</h3>
+              <h3 class="text-lg text-orange-500 font-semibold mb-2">
+                Movie Details
+              </h3>
               <p class="text-gray-700">Director: Christopher Nolan</p>
               <p class="text-gray-700">Producer: Emma Thomas</p>
               <p class="text-gray-700">Cast: Leonardo DiCaprio,Ellen Page</p>
@@ -107,7 +129,9 @@ const MovieDetailsPage = () => {
         <div className="flex flex-col md:flex-row w-[92%] mx-auto mt-10">
           <div className="flex-1 mr-4">
             <div className="mb-8">
-              <h2 className="text-2xl  text-orange-500 font-semibold mb-4">{movieData.title}</h2>
+              <h2 className="text-2xl  text-orange-500 font-semibold mb-4">
+                {movieData.title}
+              </h2>
               <p className="text-gray-700 mb-4">{movieData.description}</p>
               <div className="flex flex-col w-full -mx-2">
                 {movieData.images.map((image, index) => (
@@ -126,7 +150,9 @@ const MovieDetailsPage = () => {
             </div>
           </div>
           <div className="flex-1 ml-4">
-            <h2 className="text-xl text-orange-500 font-semibold mb-4">Photos & Videos</h2>
+            <h2 className="text-xl text-orange-500 font-semibold mb-4">
+              Photos & Videos
+            </h2>
             <div className="flex flex-wrap -mx-2">
               {movieData.photos.map((photo, index) => (
                 <div key={index} className="w-1/2 md:w-1/2 p-2">
