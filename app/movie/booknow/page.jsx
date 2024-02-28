@@ -25,6 +25,7 @@ const MovieBookingPage = () => {
       onClick={() => !isDisabled && toggleSeatSelection(seatNumber)}
     >
       <FaCouch
+      className="fa-bounce"
       style={{
         color: isSelected ? "blue" : isDisabled ? "inherit" : "green",
         fontSize: window.innerWidth >= 768 ? "30px" : "20px"
