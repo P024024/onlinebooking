@@ -17,11 +17,9 @@ const NavBar = () => {
           <ul className="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
             <Link href="/" className="hover:text-gray-500 text-white">Dashboard
             </Link>
-            <Link href="/" className="hover:text-gray-500 text-white">Docs
-            </Link>
             <Link href="/movie" className="hover:text-gray-500 text-white">Movies
             </Link>
-            <Link href="/" className="hover:text-gray-500 text-white">Pubs
+            <Link href="/" className="hover:text-gray-500 text-white">About Us
             </Link>
             <Link href="/contactus" className="hover:text-gray-500 text-white">Contact us
             </Link>

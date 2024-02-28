@@ -17,7 +17,7 @@ const ContactUsCard = () => {
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="yellow"
-                  className="w-12 h-12 "
+                  className="w-12 h-12 animate-bounce"
                 >
                   <path
                     strokeLinecap="round"
@@ -46,7 +46,7 @@ const ContactUsCard = () => {
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="yellow"
-                  className="w-12 h-12"
+                  className="w-12 h-12 animate-bounce"
                 >
                   <path
                     strokeLinecap="round"
@@ -74,7 +74,7 @@ const ContactUsCard = () => {
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="yellow"
-                  className="w-12 h-12"
+                  className="w-12 h-12 animate-bounce"
                 >
                   <path
                     strokeLinecap="round"

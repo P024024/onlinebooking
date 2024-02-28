@@ -88,10 +88,24 @@ const MovieDetailsPage = () => {
               </p>
             </div>
             <div class="flex justify-between items-center mb-4">
-              <button class="bg-transparent text-black px-8 py-2 border-2 border-orange-400 rounded-full">
-                Add to
+              <button class="bg-transparent hover:bg-black hover:text-white  font-semibold py-3  border-2 text-black px-4 rounded-3xl inline-flex items-center">
+                <span>Watch Later </span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
+                  />
+                </svg>
               </button>
-              <button class="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600">
+              <button class="bg-orange-400 hover:bg-orange-500 text-white font-semibold py-3  px-4 rounded-3xl inline-flex items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -111,7 +125,8 @@ const MovieDetailsPage = () => {
                     d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"
                   />
                 </svg>
-                Watch trailer
+
+                <span>Watch Trailer</span>
               </button>
             </div>
           </div>
