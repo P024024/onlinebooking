@@ -1,10 +1,12 @@
 'use client'
 import Link from "next/link";
-import React, { useState } from "react";
+import { useRouter } from 'next/navigation'
+import { useContext } from "react";
+import { UserContext } from "@provider/UserProvider";
 
 const NavBar = () => {
-  const [loggedon, setLoggedon] = useState(false);
-
+  const router = useRouter()
+  const { user, setUser } = useContext(UserContext)
   return (
     <header className="p-4 bg-black">
       <nav className="flex justify-between items-center w-[92%] mx-auto ">
@@ -17,9 +19,11 @@ const NavBar = () => {
           <ul className="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
             <Link href="/" className="hover:text-gray-500 text-white">Dashboard
             </Link>
+            <Link href="/" className="hover:text-gray-500 text-white">Docs
+            </Link>
             <Link href="/movie" className="hover:text-gray-500 text-white">Movies
             </Link>
-            <Link href="/" className="hover:text-gray-500 text-white">About Us
+            <Link href="/" className="hover:text-gray-500 text-white">Pubs
             </Link>
             <Link href="/contactus" className="hover:text-gray-500 text-white">Contact us
             </Link>
@@ -47,23 +51,30 @@ const NavBar = () => {
               />
             </svg>
           </button>
-          {loggedon && (
-            <button
-              type="button"
-              className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-              id="user-menu-button"
-              aria-expanded="false"
-              aria-haspopup="true"
-            >
-              <img
-                className="h-8 w-8 rounded-full"
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                alt=""
-              />
-            </button>
-          )}
-          <Link href="/login" className="hover:text-gray-500 text-white">Login
-            </Link><Link href="/signup" className="hover:text-gray-500 text-white">Register</Link>
+          {
+            user.email ?
+              <div className='flex gap-4'>
+                <Link href="/" ><img
+                  src="https://tecdn.b-cdn.net/img/new/avatars/2.webp"
+                  class="w-8 rounded-full"
+                  alt="Avatar" /></Link>
+                <button onClick={
+                  () => {
+                    const conf = confirm('Are you sure you want to logout?')
+                    if (!conf) return
+                    setUser({ username: '', email: '' })
+                    router.push('/login')
+                  }
+
+                } className="hover:text-gray-500 text-white">Logout</button>
+
+
+              </div> :
+              <div className='flex gap-4'>
+                <Link href="/login" className="hover:text-gray-500 text-white">Login</Link>
+                <Link href="/signup" className="hover:text-gray-500 text-white">Register</Link>
+              </div>
+          }
         </div>
       </nav>
     </header>

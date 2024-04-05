@@ -1,13 +1,16 @@
 "use client";
-
+import {useContext} from 'react'
+import {UserContext} from "@provider/UserProvider";
 import ContactUsCard from "@components/ContactUsCard";
 
 const Home = () => {
-  return (<>
+  const {user} = useContext(UserContext)
+  return (
+  <>
     <div className="main pt-40">
       <div className="flex flex-col justify-center">
         <h1 className="justify-center flex p-8 text-xl font-bold  text-white ">
-          Welcome to Online Ticket Booking System
+          Welcome to Online Ticket Booking System, Mr. {user.email}
         </h1>
         <p class="text-white text-sm  justify-center text-center lg:text-justify-center lg:break-words gap-[1vw]">
           Join us on an epic adventures we journey around the some of the most
@@ -22,7 +25,7 @@ const Home = () => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6 text-blue-600 mr-4"
+                className="w-6 h-6 text-blue-600 mr-4 animate-pulse"
               >
                 <path
                   strokeLinecap="round"

@@ -11,7 +11,7 @@ const Footer = () => {
         <div>
             <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Company</h2>
             <ul class="text-gray-500 dark:text-gray-400 font-medium gap-[1vw] flex flex-col">
-                <Link href="" class="hover:underline ">About</Link>
+                <Link href="/about" class="hover:underline ">About</Link>
                 <Link href="" class="hover:underline ">Careers</Link>
                 <Link href="" class="hover:underline ">Docs</Link>
                 <Link href="" class="hover:underline ">Blog</Link>

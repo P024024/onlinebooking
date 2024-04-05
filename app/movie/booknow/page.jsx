@@ -1,10 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import { FaCouch } from "react-icons/fa";
+import {UserContext} from "@provider/UserProvider"
+import {useContext} from "react"
 
 const MovieBookingPage = () => {
-  const [selectedSeats, setSelectedSeats] = useState([]);
-  const disabledSeats = [7, 8, 17, 18, 27, 28];
+  const [selectedSeats, setSelectedSeats] = useState([])
+  const disabledSeats = [7, 8, 17, 18, 27, 28]
+  const {user,setUser}= useContext(UserContext)
 
   const toggleSeatSelection = (seatNumber) => {
     setSelectedSeats((prevSelectedSeats) => {
@@ -19,17 +22,15 @@ const MovieBookingPage = () => {
   const renderSeat = (seatNumber, isSelected, isDisabled) => (
     <div
       key={seatNumber}
-      className={`seat mr-4 ${isSelected ? "selected" : ""} ${
-        isDisabled ? "disabled" : ""
-      }`}
+      className={`seat mr-4 ${isSelected ? "selected" : ""} ${isDisabled ? "disabled" : ""
+        }`}
       onClick={() => !isDisabled && toggleSeatSelection(seatNumber)}
     >
       <FaCouch
-      className="fa-bounce"
-      style={{
-        color: isSelected ? "blue" : isDisabled ? "inherit" : "green",
-        fontSize: window.innerWidth >= 768 ? "30px" : "20px"
-      }}
+        style={{
+          color: isSelected ? "blue" : isDisabled ? "inherit" : "green",
+          fontSize: window.innerWidth >= 768 ? "30px" : "20px"
+        }}
       />
       <div className="text-xs text-center">{seatNumber}</div>
     </div>
@@ -47,41 +48,80 @@ const MovieBookingPage = () => {
   );
 
   return (
-    <div className="container md:grid md:grid-cols-3 px-4 py-8">
-      <div className="col-span-2">
-        <h1 className="text-2xl font-bold mb-4">Select Your Seats</h1>
-  
-        <div className="grid">
+    <div className="flex flex-col md:grid md:grid-cols-3 px-4 py-8">
+      <div className="md:col-span-2">
+        <h1 className="text-2xl font-bold mb-4 text-center">Select Your Seats</h1>
+
+        <div className="flex justify-center">
           <div>
-            {renderRow(11, 16, 105)}
-            {renderRow(10, 15, 90)}
-            {renderRow(9, 14, 76)}
-            {renderRow(8, 13, 63)}
-            {renderRow(7, 12, 51)}
-            {renderRow(5, 11, 40)}
-          </div>
-          <p className='text-center mb-2 font-bold'>Walking Corridor</p>
-          <div>
-            {renderRow(5, 10, 30)}
-            {renderRow(4, 9, 21)}
-            {renderRow(2, 8, 13)}
-            {renderRow(2, 7, 6)}
-            {renderRow(1, 6, 0)}
-          </div>
+            <div>
+              {renderRow(11, 16, 105)}
+              {renderRow(10, 15, 90)}
+              {renderRow(9, 14, 76)}
+              {renderRow(8, 13, 63)}
+              {renderRow(7, 12, 51)}
+              {renderRow(5, 11, 40)}
+         
+            <p className='text-center mb-2 font-bold'>Walking Corridor</p>
+           
+              {renderRow(5, 10, 30)}
+              {renderRow(4, 9, 21)}
+              {renderRow(2, 8, 13)}
+              {renderRow(2, 7, 6)}
+              {renderRow(1, 6, 0)}
+            </div>
           <div className="screen mt-8 flex justify-center items-center bg-gray-500 w-[20%] mx-auto h-[100px] rounded-xl">
             <h2 className="text-lg font-bold text-center">Cinema Screen</h2>
           </div>
+          </div>
         </div>
       </div>
-      <div className="selected-seats">
-        <h2 className="text-lg font-bold mb-2">Selected Seats:</h2>
-        <div className="grid grid-cols-3 gap-2 ">
-          {selectedSeats.map((seat) => (
-            <div key={seat} className="text-center text-sm bg-gray-400 flex justify-evenly p-4 rounded-xl">
-              <FaCouch style={{ color: 'Black', fontSize: '24px' }} />
-              <span className="block">{seat}</span>
+      <div className="flex flex-col">
+        <div className="">
+          <div className="selected-seats h-[220px] overflow-y-scroll">
+            <h2 className="text-lg font-bold mb-2">Selected Seats:</h2>
+            <div className="grid grid-cols-3 gap-2 ">
+              {selectedSeats.map((seat) => (
+                <div key={seat} className="text-center text-sm bg-gray-400 flex justify-evenly p-4 rounded-xl">
+                  <FaCouch style={{ color: 'Black', fontSize: '24px' }} />
+                  <span className="block">{seat}</span>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+        </div>
+        <div>
+          {/* transaction card */}
+          <div className="p-4 mt-6 shadow-md rounded-md grid grid-cols-2">
+              <h1 className="border-black border-b-2 col-span-2 py-2 mb-2 text-xl font-medium">Totals:</h1>
+            <div className="font-medium">
+              <p>Seats Number: </p>
+              <p>Price per seat: </p>
+              <p>Total: </p>
+              <p>Movie: </p>
+              <p>Time: </p>
+              <p>VAT: </p>
+              <p>Discount: </p>
+              <p>Net Total: </p>
+              <p>Billed to: </p>
+            </div>
+            <div>
+              <p>{selectedSeats.length}</p>
+              <p>Rs. 600</p>
+              <p>Rs. {selectedSeats.length * 600}</p>
+              <p>The Matrix</p>
+              <p>6:00 PM</p>
+              <p>60</p>
+              <p>40</p>
+              <p>{selectedSeats.length * 600 + 60 - 40}</p>
+              <p>{user.email}</p>
+            </div>
+          </div>
+          <div className="flex">
+            <div className="bg-yellow-600 rounded-full px-4 py-2 mt-4">
+              Book Now 
+            </div>
+          </div>
         </div>
       </div>
     </div>

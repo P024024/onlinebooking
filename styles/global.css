@@ -18,3 +18,21 @@ input:focus{
     width: 100%;
 
 } 
+@keyframes placeholderAnimation {
+    0% { content: ''; }
+    10% { content: 'S'; }
+    20% { content: 'Se'; }
+    30% { content: 'Sea'; }
+    40% { content: 'Seac'; }
+    50% { content: 'Seach'; }
+    60% { content: 'Search'; }
+    70% { content: 'Search '; }
+    80% { content: 'Search m'; }
+    90% { content: 'Search mo'; }
+    100% { content: 'Search movi'; }
+  }
+  
+  .placeholder-animation::placeholder {
+    animation: placeholderAnimation 2s infinite;
+  }
+  
