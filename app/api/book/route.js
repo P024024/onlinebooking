@@ -26,6 +26,7 @@ export const POST = async (req) => {
         await connectToDB();
         const movie = await Movie.create({email: email, movieId: movieId, seat: seat})
         movie.save()
+        console.log(movie._id)
         return new Response(JSON.stringify(movie),{
             status:201
         })

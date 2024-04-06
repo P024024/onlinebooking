@@ -9,6 +9,7 @@ const MovieBookingPage = ({params}) => {
   // get disabled seats for a given movidId
   const router = useRouter();
   const [disabledSeats, setDisabledSeats] = useState([]);
+  const [bookingId, setBookingId] = useState('')
 
   useEffect(() => {
     console.log(params.id)
@@ -31,7 +32,7 @@ const MovieBookingPage = ({params}) => {
     const selectedSeatsbyc = selectedSeats.join(",");
     console.log(selectedSeatsbyc);
     // POST request for booking a movie given movieid and email
-    const response = await fetch("/api/book", {
+    const responsed = await fetch("/api/book", {
       method: "POST",
       body: JSON.stringify({
         email: user.email,
@@ -40,12 +41,16 @@ const MovieBookingPage = ({params}) => {
       }),
     });
 
-    if (response.ok) {
+    if (responsed.ok) {
       alert("Booking Successful")
+      // get the _id from the booking movie response
+      const data = await responsed.json();
+     
       // send POST request to seats api to update the disabled seats
       const response = await fetch(`/api/seats/${params.id}`, {
         method: "POST",
         body: JSON.stringify({
+          movieBookingId: data._id,
           movieId: params.id,
           seats: selectedSeats,
         }),

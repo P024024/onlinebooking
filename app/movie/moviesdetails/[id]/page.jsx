@@ -21,7 +21,7 @@ const MovieDetailsPage = ({params}) => {
         setMovieDetails(response)
       })
       .catch(err => console.error(err));
-  };
+  }
 
   useEffect(() => {
     fetchMovieDetails();

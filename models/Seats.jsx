@@ -1,6 +1,12 @@
 import {Schema, model, models} from 'mongoose'; 
 
 const SeatsSchema = new Schema({
+    movieBookingId: {
+        
+        type: String,
+        required: [true, 'Movie booking ID is required']
+    },
+
     movieId: {
         type: Number,
         required: [true, 'Movie ID is required']
