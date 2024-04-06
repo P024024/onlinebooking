@@ -54,7 +54,7 @@ const NavBar = () => {
           {
             user.email ?
               <div className='flex gap-4'>
-                <Link href="/" ><img
+                <Link href="/profile" ><img
                   src="https://tecdn.b-cdn.net/img/new/avatars/2.webp"
                   class="w-8 rounded-full"
                   alt="Avatar" /></Link>

@@ -19,7 +19,7 @@ const RootLayout = ({ children }) => {
           <div>
             {children}
           </div>
-            <Footer />
+            {/* <Footer /> */}
         </UserContext.Provider>
       </body>
     </html>

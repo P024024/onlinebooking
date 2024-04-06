@@ -1,35 +1,53 @@
-import React from "react";
+'use client'
+import {useState, useEffect} from "react";
+import {useRouter} from 'next/navigation'
 
-const MovieDetailsPage = () => {
-  const movieData = {
-    title: "Inception",
-    description:
-      "Inception is a 2010 science fiction action film written and directed by Christopher Nolan, who also produced the film with Emma Thomas, his wife.",
-    images: [{ url: "/assets/img/welcome.jpeg", alt: "Image 1" }],
-    photos: [
-      { url: "/assets/img/inception.jpg", alt: "Photo 1" },
-      { url: "/assets/img/inception.jpg", alt: "Photo 2" },
-      { url: "/assets/img/welcome.jpeg", alt: "Photo 3" },
-      { url: "/assets/img/welcome.jpeg", alt: "Photo 4" },
-    ],
+const MovieDetailsPage = ({params}) => {
+  const router = useRouter();
+  const [movieDetails, setMovieDetails] = useState();
+
+  const fetchMovieDetails = async () => {
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZjdlNWM1NzIxYmQ2ZGJiOGVhYTlmYjU5YTQ3NzZjYSIsInN1YiI6IjY2MTAyYWJkNDk3NTYwMDE0YTRlMTU4NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9i2AWamC0ADzdN9GZ5LYma6pDTnKyQ6CzcDaH5BZl9g'
+      }
+    };
+
+    fetch(`https://api.themoviedb.org/3/movie/${params.id}?language=en-US`, options)
+      .then(response => response.json())
+      .then(response => {
+        setMovieDetails(response)
+      })
+      .catch(err => console.error(err));
   };
+
+  useEffect(() => {
+    fetchMovieDetails();
+  }, []);
+
+  useEffect(() => {
+    setMovieDetails(movieDetails);
+  },[movieDetails]);
 
   return (
     <>
       <div className="relative">
-        <img src="/assets/img/inception.jpg" className="h-[420px] w-full" />
+        <img src={`https://image.tmdb.org/t/p/w500${movieDetails?.poster_path}`}
+ className="h-[420px] w-full object-cover" />
         <img
-          src="/assets/img/inception.jpeg"
+          src={`https://image.tmdb.org/t/p/w500${movieDetails?.backdrop_path}`}
           class="h-[300px] w-[250px] rounded-2xl absolute  top-60 left-20"
         />
         <div class="flex flex-col md:flex-row mx-auto rounded-xl w-[90%]">
           <div class="flex flex-col absolute  top-60 left-[350px]">
             <div class="p-4 ">
-              <p className="text-orange-500 text-xl font-bold">2014</p>
+              <p className="text-orange-500 text-xl font-bold">{movieDetails?.release_date}</p>
               <h2 className="text-orange-500 text-3xl font-semibold">
-                Inception
+                {movieDetails?.title}
               </h2>
-              <p className="text-orange-500">Action,Sci-fi 117mins</p>
+              <span className="text-orange-500">{movieDetails?.genres?.map((genre, index) => <span key={index}>{genre.name} </span>)}</span>
               <div class="flex text-orange-500 gap-[1vw]">
                 <div class="flex flex-col">
                   <div className="text-xl font-semibold">CRITICS</div>
@@ -52,7 +70,7 @@ const MovieDetailsPage = () => {
                   </div>
                 </div>
                 <div class="flex flex-col">
-                  <div className="text-xl font-semibold">AUDICENCES</div>
+                  <div className="text-xl font-semibold">AUDIENCES</div>
                   <div class="flex items-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -82,37 +100,23 @@ const MovieDetailsPage = () => {
           <div class="flex-1  p-4 border-r-2">
             <div class="mb-2">
               <p class="text-gray-700">
-                Inception is a 2010 science fiction action film written and
-                directed by Christopher Nolan, who also produced the film with
-                Emma Thomas, his wife.
+                {movieDetails?.overview}
               </p>
             </div>
-            <div class="flex justify-between items-center mb-4">
-              <button class="bg-transparent text-black px-8 py-2 border-2 border-orange-400 rounded-full">
-                Add to
+            <div class="flex-col flex mb-4">
+              <button 
+              onClick = {()=>{
+                router.push(`/movie/booknow/${params.id}`)
+              
+              }}
+              class="my-2 bg-transparent text-black px-8 py-2 border-2 border-orange-400 rounded-full">
+                Book Now
               </button>
-              <button class="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-6 h-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"
-                  />
-                </svg>
-                Watch trailer
-              </button>
+            
+              <span className="text-gray-700"><p>Produciton Companies:</p> {movieDetails?.production_companies?.map((company, index)=> <span>
+                {company.name}
+                <img className='w-50 h-5 object-scale-down' src={`https://image.tmdb.org/t/p/w500${company.logo_path}`}></img>
+              </span>)}</span>
             </div>
           </div>
           <div class="flex ">
@@ -120,55 +124,49 @@ const MovieDetailsPage = () => {
               <h3 class="text-lg text-orange-500 font-semibold mb-2">
                 Movie Details
               </h3>
-              <p class="text-gray-700">Director: Christopher Nolan</p>
-              <p class="text-gray-700">Producer: Emma Thomas</p>
-              <p class="text-gray-700">Cast: Leonardo DiCaprio,Ellen Page</p>
+              <p className="text-gray-700">Revenue: $ {movieDetails?.revenue} </p>
+              
+              <p className="text-gray-700">Status: {movieDetails?.status}</p>
+              <p className="text-gray-700">Tagline: {movieDetails?.tagline}</p>
+              <p className='text-gray-700'>Runtime: {movieDetails?.runtime} minutes</p>
             </div>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row w-[92%] mx-auto mt-10">
+        <div className="grid grid-cols-3 mt-10 w-[92%] mx-auto">
           <div className="flex-1 mr-4">
             <div className="mb-8">
               <h2 className="text-2xl  text-orange-500 font-semibold mb-4">
-                {movieData.title}
               </h2>
-              <p className="text-gray-700 mb-4">{movieData.description}</p>
+              <p className="text-gray-700 mb-4"></p>
               <div className="flex flex-col w-full -mx-2">
-                {movieData.images.map((image, index) => (
-                  <div key={index} className=" p-2">
-                    <img
-                      src={image.url}
-                      alt={image.alt}
-                      className="w-full rounded-lg shadow"
-                    />
-                  </div>
-                ))}
+                
               </div>
-              <p className="text-gray-700 mb-4">{movieData.description}</p>
-              <p className="text-gray-700 mb-4">{movieData.description}</p>
-              <p className="text-gray-700 mb-4">{movieData.description}</p>
+              <h2 className="text-xl text-orange-500 font-semibold mb-4">
+                Description            
+              </h2>
+              <p className="text-gray-700 mb-4">{movieDetails?.overview}</p>
+              <p className="text-gray-700 mb-4">{movieDetails?.overview}</p>
+              <p className="text-gray-700 mb-4">{movieDetails?.overview}</p>
             </div>
           </div>
-          <div className="flex-1 ml-4">
+          <div className="grid grid-cols-2 col-span-2">
             <h2 className="text-xl text-orange-500 font-semibold mb-4">
               Photos & Videos
             </h2>
-            <div className="flex flex-wrap -mx-2">
-              {movieData.photos.map((photo, index) => (
-                <div key={index} className="w-1/2 md:w-1/2 p-2">
-                  <img
-                    src={photo.url}
-                    alt={photo.alt}
-                    className="w-full rounded-lg shadow"
-                  />
-                </div>
-              ))}
+            <div className="flex col-span-2 gap-6">
+            <img src={`https://image.tmdb.org/t/p/w500${movieDetails?.poster_path}`}
+ className="w-72 h-72 object-cover rounded-2xl" />
+        <img
+          src={`https://image.tmdb.org/t/p/w500${movieDetails?.backdrop_path}`}
+          class="h-72 w-72 object-cover rounded-2xl"
+        />
+            </div>
             </div>
           </div>
         </div>
-      </div>
     </>
   );
 };
+
 
 export default MovieDetailsPage;

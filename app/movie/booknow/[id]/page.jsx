@@ -1,12 +1,60 @@
 "use client";
-import React, { useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { FaCouch } from "react-icons/fa";
 import {UserContext} from "@provider/UserProvider"
-import {useContext} from "react"
+import {useRouter} from 'next/navigation'
 
-const MovieBookingPage = () => {
+const MovieBookingPage = ({params}) => {
+
+  // get disabled seats for a given movidId
+  const router = useRouter();
+  const [disabledSeats, setDisabledSeats] = useState([]);
+
+  useEffect(() => {
+    console.log(params.id)
+    fetch(`/api/seats/${params.id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        // data is an array of response with elements that contains a field called disabledseats that contains numbers, first join all the arrays into one array and set it to disabledSeats
+        const disabledSeats = data.map((element) => element.disabledSeats);
+        setDisabledSeats(disabledSeats.flat());
+
+        console.log(data.flat())
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, [params.id]);
+
+  const handleBooking = async () => {
+    // turn selectedSeats array into a string
+    const selectedSeatsbyc = selectedSeats.join(",");
+    console.log(selectedSeatsbyc);
+    // POST request for booking a movie given movieid and email
+    const response = await fetch("/api/book", {
+      method: "POST",
+      body: JSON.stringify({
+        email: user.email,
+        movieId: params.id,
+        seat: selectedSeatsbyc,
+      }),
+    });
+
+    if (response.ok) {
+      alert("Booking Successful")
+      // send POST request to seats api to update the disabled seats
+      const response = await fetch(`/api/seats/${params.id}`, {
+        method: "POST",
+        body: JSON.stringify({
+          movieId: params.id,
+          seats: selectedSeats,
+        }),
+      });
+      router.push('/movie')
+    }
+  };
+
   const [selectedSeats, setSelectedSeats] = useState([])
-  const disabledSeats = [7, 8, 17, 18, 27, 28]
   const {user,setUser}= useContext(UserContext)
 
   const toggleSeatSelection = (seatNumber) => {
@@ -118,9 +166,11 @@ const MovieBookingPage = () => {
             </div>
           </div>
           <div className="flex">
-            <div className="bg-yellow-600 rounded-full px-4 py-2 mt-4">
-              Book Now 
-            </div>
+            <button 
+            onClick={handleBooking}
+            className="bg-yellow-600 rounded-full px-4 py-2 mt-4">
+              Book Now
+            </button>
           </div>
         </div>
       </div>
