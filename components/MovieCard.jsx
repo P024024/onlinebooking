@@ -42,7 +42,8 @@ const MovieCard = ({ movie }) => {
             </span>
             <div class="flex items-center gap-4">
               <span class="text-3xl font-bold text-gray-900 dark:text-white">
-                Rs {movie.vote_average * 100 + 79}
+                
+                RS {Math.floor(movie.vote_average * 100 + 79)}
               </span>
 
               <Link

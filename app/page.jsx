@@ -10,7 +10,7 @@ const Home = () => {
     <div className="main pt-40">
       <div className="flex flex-col justify-center">
         <h1 className="justify-center flex p-8 text-xl font-bold  text-white ">
-          Welcome to Online Ticket Booking System, Mr. {user.email}
+          Welcome to Online Ticket Booking System, Mr. {user.username}
         </h1>
         <p class="text-white text-sm  justify-center text-center lg:text-justify-center lg:break-words gap-[1vw]">
           Join us on an epic adventures we journey around the some of the most

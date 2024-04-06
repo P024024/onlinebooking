@@ -6,6 +6,33 @@ import {useRouter} from 'next/navigation'
 
 const MovieBookingPage = ({params}) => {
 
+  const [movieDetails, setMovieDetails] = useState();
+
+  const fetchMovieDetails = async () => {
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZjdlNWM1NzIxYmQ2ZGJiOGVhYTlmYjU5YTQ3NzZjYSIsInN1YiI6IjY2MTAyYWJkNDk3NTYwMDE0YTRlMTU4NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9i2AWamC0ADzdN9GZ5LYma6pDTnKyQ6CzcDaH5BZl9g'
+      }
+    };
+
+    fetch(`https://api.themoviedb.org/3/movie/${params.id}?language=en-US`, options)
+      .then(response => response.json())
+      .then(response => {
+        setMovieDetails(response)
+      })
+      .catch(err => console.error(err));
+  }
+
+  useEffect(() => {
+    fetchMovieDetails();
+  }, []);
+
+  useEffect(() => {
+    setMovieDetails(movieDetails);
+  },[movieDetails]);
+
   // get disabled seats for a given movidId
   const router = useRouter();
   const [disabledSeats, setDisabledSeats] = useState([]);
@@ -28,6 +55,10 @@ const MovieBookingPage = ({params}) => {
   }, [params.id]);
 
   const handleBooking = async () => {
+    if (!user.username){
+      alert('Please login to book a movie')
+      return
+    }
     // turn selectedSeats array into a string
     const selectedSeatsbyc = selectedSeats.join(",");
     console.log(selectedSeatsbyc);
@@ -148,25 +179,30 @@ const MovieBookingPage = ({params}) => {
           <div className="p-4 mt-6 shadow-md rounded-md grid grid-cols-2">
               <h1 className="border-black border-b-2 col-span-2 py-2 mb-2 text-xl font-medium">Totals:</h1>
             <div className="font-medium">
-              <p>Seats Number: </p>
-              <p>Price per seat: </p>
-              <p>Total: </p>
               <p>Movie: </p>
               <p>Time: </p>
+              <p>Price per seat: </p>
+              <p>Seats: </p>
+              <p>Total: </p>
               <p>VAT: </p>
               <p>Discount: </p>
               <p>Net Total: </p>
               <p>Billed to: </p>
             </div>
             <div>
-              <p>{selectedSeats.length}</p>
-              <p>Rs. 600</p>
-              <p>Rs. {selectedSeats.length * 600}</p>
-              <p>The Matrix</p>
+              <p>{
+              // check if movie title is longer than 50 characters, if so, slice it and add '...'
+              movieDetails?.title.length > 20
+                ? `${movieDetails?.title.substring(0, 20)}...`
+                : movieDetails?.title
+              }</p>
               <p>6:00 PM</p>
+              <p>  Rs {movieDetails?.vote_average * 100 + 79}</p>
+              <p>{selectedSeats.length}</p>
+              <p>Rs. {selectedSeats.length * movieDetails?.vote_average * 100 + 79}</p>
               <p>60</p>
-              <p>40</p>
-              <p>{selectedSeats.length * 600 + 60 - 40}</p>
+              <p>50</p>
+              <p>{selectedSeats.length * movieDetails?.vote_average * 100 + 29 + 60}</p>
               <p>{user.email}</p>
             </div>
           </div>

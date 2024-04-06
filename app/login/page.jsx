@@ -18,10 +18,11 @@ const Login = () => {
         
     })
  console.log(response)
+ const data = await response.json()
     if (response.ok) {
       // fetch the username using the route api/[id]/route.js and set the username from the response
         
-        setUser({...user, 'email': u.email})
+        setUser({...user, 'email': u.email, 'username':data.username})
         router.push('/')
     }
     else{
